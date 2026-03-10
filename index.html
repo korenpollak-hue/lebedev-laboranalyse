@@ -2,653 +2,514 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Komplettanalyse Laborgeräte — Dr. Lebedev</title>
+<title>Laborgeräte-Vergleich — Dr. Lebedev</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Inter', -apple-system, sans-serif; color: #111; background: #fff; padding: 40px; max-width: 1000px; margin: 0 auto; font-size: 13px; line-height: 1.6; }
+  body { font-family: 'Inter', -apple-system, sans-serif; color: #111; background: #fff; padding: 32px; max-width: 1100px; margin: 0 auto; font-size: 13px; line-height: 1.5; }
 
-  /* HEADER */
-  .header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 20px; border-bottom: 3px solid #111; margin-bottom: 32px; }
-  .header h1 { font-size: 24px; font-weight: 900; letter-spacing: -0.5px; }
-  .header .sub { color: #666; font-size: 12px; margin-top: 4px; }
+  .header { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 16px; border-bottom: 3px solid #111; margin-bottom: 24px; }
+  .header h1 { font-size: 22px; font-weight: 900; letter-spacing: -0.5px; }
+  .header .sub { color: #666; font-size: 11px; margin-top: 2px; }
   .header-right { text-align: right; font-size: 11px; color: #999; }
-  .header-right strong { display: block; color: #333; font-size: 13px; }
 
-  /* SECTION TITLES */
-  h2 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #111; margin: 36px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #e5e7eb; }
-  h3 { font-size: 13px; font-weight: 700; margin: 20px 0 8px; color: #333; }
+  /* KPIS */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+  .kpi { border-radius: 10px; padding: 16px; text-align: center; }
+  .kpi .val { font-size: 32px; font-weight: 900; }
+  .kpi .lbl { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; color: #555; }
+  .kpi-red { background: #fef2f2; }
+  .kpi-red .val { color: #dc2626; }
+  .kpi-green { background: #dcfce7; }
+  .kpi-green .val { color: #16a34a; }
+  .kpi-blue { background: #eff6ff; }
+  .kpi-blue .val { color: #2563eb; }
 
-  /* EXECUTIVE SUMMARY */
-  .exec { background: linear-gradient(135deg, #0f172a, #1e293b); color: #fff; border-radius: 12px; padding: 24px; margin-bottom: 28px; }
-  .exec h2 { color: #94a3b8; border: none; margin: 0 0 12px; padding: 0; }
-  .exec p { color: #e2e8f0; font-size: 13px; line-height: 1.7; }
-  .exec .highlight { color: #38bdf8; font-weight: 700; }
-  .exec .big-number { font-size: 36px; font-weight: 900; color: #38bdf8; display: block; margin: 8px 0 4px; }
+  h2 { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #111; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #e5e7eb; }
 
-  /* STATUS GRID */
-  .status-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 28px; }
-  .status-card { border-radius: 10px; padding: 14px; text-align: center; }
-  .status-card .num { font-size: 28px; font-weight: 900; }
-  .status-card .lbl { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
-  .s-green { background: #dcfce7; }
-  .s-green .num { color: #16a34a; }
-  .s-red { background: #fef2f2; }
-  .s-red .num { color: #dc2626; }
-  .s-yellow { background: #fefce8; }
-  .s-yellow .num { color: #ca8a04; }
-  .s-blue { background: #eff6ff; }
-  .s-blue .num { color: #2563eb; }
-  .s-gray { background: #f3f4f6; }
-  .s-gray .num { color: #4b5563; }
-
-  /* TABLES */
-  table { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 12px; }
-  thead th { background: #111; color: #fff; padding: 10px 12px; text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
-  tbody td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+  /* MAIN TABLE */
+  table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 11.5px; }
+  thead th { background: #111; color: #fff; padding: 8px 10px; text-align: left; font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; white-space: nowrap; }
+  thead th.num { text-align: right; }
+  tbody td { padding: 8px 10px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+  tbody td.num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
   tbody tr:hover { background: #fafafa; }
-  tbody tr.highlight td { background: #eff6ff; }
-  tbody tr.dead td { background: #fef2f2; text-decoration: line-through; color: #999; }
+  tbody tr.top td { background: #f0fdf4; }
+  tbody tr.dead td { background: #fef2f2; opacity: 0.4; }
+
+  /* STARS */
+  .stars { color: #f59e0b; font-size: 13px; letter-spacing: -1px; }
+  .stars-dim { color: #d1d5db; }
 
   /* TAGS */
-  .tag { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 700; white-space: nowrap; }
+  .tag { display: inline-block; font-size: 9px; padding: 2px 7px; border-radius: 20px; font-weight: 700; white-space: nowrap; }
   .tag-green { background: #dcfce7; color: #166534; }
   .tag-red { background: #fef2f2; color: #991b1b; }
   .tag-yellow { background: #fef9c3; color: #854d0e; }
   .tag-blue { background: #dbeafe; color: #1e40af; }
-  .tag-gray { background: #f3f4f6; color: #374151; }
-  .tag-purple { background: #f3e8ff; color: #6b21a8; }
+  .tag-gray { background: #f3f4f6; color: #6b7280; }
 
-  /* EMAIL DETAIL CARDS */
-  .email-card { background: #fafafa; border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; }
-  .email-card .company { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
-  .email-card .meta { font-size: 11px; color: #6b7280; margin-bottom: 8px; }
-  .email-card .content { font-size: 12px; color: #374151; background: #fff; border-left: 3px solid #3b82f6; padding: 10px 14px; border-radius: 4px; }
-  .email-card .content.bounce { border-left-color: #ef4444; }
-  .email-card .content.absage { border-left-color: #f59e0b; }
-  .email-card .action { margin-top: 10px; background: #eff6ff; border-radius: 6px; padding: 8px 12px; font-size: 11px; font-weight: 600; color: #1e40af; }
-  .email-card .action.urgent { background: #fef2f2; color: #991b1b; }
+  /* SAVINGS BAR */
+  .bar-wrap { width: 100%; background: #f3f4f6; border-radius: 3px; height: 18px; position: relative; }
+  .bar { height: 100%; border-radius: 3px; display: flex; align-items: center; justify-content: flex-end; padding-right: 6px; font-size: 9px; font-weight: 700; color: #fff; min-width: 30px; }
+  .bar-g { background: #16a34a; }
+  .bar-b { background: #2563eb; }
+  .bar-y { background: #d97706; }
+  .bar-o { background: #ea580c; }
+  .bar-r { background: #dc2626; }
 
-  /* RANKING CHART */
-  .rank-chart { margin-bottom: 28px; }
-  .rank-row { display: flex; align-items: center; margin-bottom: 6px; }
-  .rank-pos { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; color: #fff; margin-right: 12px; flex-shrink: 0; }
-  .rank-pos.gold { background: #f59e0b; }
-  .rank-pos.silver { background: #6b7280; }
-  .rank-pos.bronze { background: #b45309; }
-  .rank-pos.normal { background: #d1d5db; color: #374151; }
-  .rank-name { width: 180px; font-size: 12px; font-weight: 600; flex-shrink: 0; }
-  .rank-bar-track { flex: 1; background: #f3f4f6; border-radius: 4px; height: 28px; position: relative; }
-  .rank-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding: 0 10px; color: #fff; font-size: 11px; font-weight: 700; }
-  .rank-savings { width: 80px; text-align: right; font-size: 12px; font-weight: 700; margin-left: 10px; flex-shrink: 0; }
-  .c-emerald { background: #059669; }
-  .c-blue { background: #2563eb; }
-  .c-sky { background: #0284c7; }
-  .c-teal { background: #0d9488; }
-  .c-amber { background: #d97706; }
-  .c-orange { background: #ea580c; }
-  .c-rose { background: #e11d48; }
-  .c-gray { background: #9ca3af; }
-
-  /* NEW MANUFACTURERS */
-  .new-card { border: 2px solid #e5e7eb; border-radius: 12px; padding: 16px; margin-bottom: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .new-card.recommended { border-color: #3b82f6; background: #f8faff; }
-  .new-card h4 { font-size: 14px; font-weight: 800; grid-column: 1 / -1; margin-bottom: 4px; }
-  .new-card .detail { font-size: 12px; color: #374151; }
-  .new-card .detail strong { color: #111; }
-  .new-card .flag { font-size: 11px; color: #6b7280; }
-
-  /* ACTION PLAN */
-  .action-list { list-style: none; margin-bottom: 28px; }
-  .action-list li { display: flex; align-items: flex-start; margin-bottom: 10px; padding: 12px 14px; border-radius: 8px; background: #fafafa; border: 1px solid #e5e7eb; }
-  .action-list li.urgent { background: #fef2f2; border-color: #fecaca; }
-  .action-list li.important { background: #eff6ff; border-color: #bfdbfe; }
-  .action-list .prio { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; color: #fff; margin-right: 12px; flex-shrink: 0; margin-top: 1px; }
-  .action-list .prio.p1 { background: #dc2626; }
-  .action-list .prio.p2 { background: #f59e0b; }
-  .action-list .prio.p3 { background: #3b82f6; }
-  .action-list .prio.p4 { background: #9ca3af; }
-  .action-list .action-text { flex: 1; }
-  .action-list .action-text strong { display: block; font-size: 13px; margin-bottom: 2px; }
-  .action-list .action-text span { font-size: 11px; color: #6b7280; }
+  /* NOTES */
+  .note { font-size: 11px; color: #6b7280; margin-top: -12px; margin-bottom: 20px; }
+  .note strong { color: #374151; }
 
   /* FOOTER */
-  .footer { margin-top: 36px; padding-top: 20px; border-top: 2px solid #111; display: flex; justify-content: space-between; }
-  .footer p { font-size: 11px; color: #999; }
-  .footer .conf { background: #111; color: #fff; border-radius: 4px; padding: 4px 10px; font-size: 10px; font-weight: 700; }
+  .footer { margin-top: 28px; padding-top: 16px; border-top: 2px solid #111; font-size: 10px; color: #999; }
 
-  @media print { body { padding: 20px; font-size: 11px; } }
+  @media print { body { padding: 16px; font-size: 10px; } }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div>
-    <h1>Komplettanalyse: Laborgeräte-Wechsel</h1>
-    <div class="sub">Erstellt für Koren Pollak · Film-labor · Projekt Dr. Lebedev · 10. März 2026</div>
+    <h1>Laborgeräte-Vergleich: Zahlen & Bewertung</h1>
+    <div class="sub">Dr. Lebedev Privatarztpraxis Frankfurt · Ersatz für 2x bioMerieux Vidas 3</div>
   </div>
-  <div class="header-right">
-    <strong>Internes Dokument</strong>
-    koren@film-labor.de<br>Stand: 10.03.2026 17:00
+  <div class="header-right">Stand: 10.03.2026</div>
+</div>
+
+<!-- KPIs -->
+<div class="kpi-row">
+  <div class="kpi kpi-red">
+    <div class="val">>20.000 €</div>
+    <div class="lbl">Aktuelle Kosten/Monat</div>
+  </div>
+  <div class="kpi kpi-green">
+    <div class="val">3.000–6.000 €</div>
+    <div class="lbl">Best-Case Kosten/Monat</div>
+  </div>
+  <div class="kpi kpi-green">
+    <div class="val">168.000 €</div>
+    <div class="lbl">Einsparung/Jahr (realistisch)</div>
+  </div>
+  <div class="kpi kpi-blue">
+    <div class="val">11</div>
+    <div class="lbl">Hersteller verglichen</div>
   </div>
 </div>
 
-<!-- EXECUTIVE SUMMARY -->
-<div class="exec">
-  <h2>EXECUTIVE SUMMARY</h2>
-  <p>
-    Am 8. März wurden <span class="highlight">10 Anfragen</span> an Laborgeräte-Hersteller gesendet.
-    <span class="highlight">4 Firmen haben persönlich geantwortet</span>, 4 Emails sind nicht angekommen (falsche Adressen),
-    1 Firma hat abgesagt (HUMAN — kein Service in der Region), 1 nur Auto-Antwort.
-  </p>
-  <p style="margin-top: 12px;">
-    Durch Recherche wurden <span class="highlight">6 weitere Hersteller</span> identifiziert, darunter
-    <span class="highlight">Tosoh</span> (von Dr. Lebedev selbst gefunden) mit Niederlassung direkt bei Frankfurt.
-    Potenzielle Einsparung:
-  </p>
-  <span class="big-number">144.000 – 204.000 €/Jahr</span>
-  <p style="color: #94a3b8; font-size: 11px;">Bei Wechsel auf Snibe/Mindray/Tosoh gegenüber >240.000 €/Jahr aktuell</p>
-</div>
-
-<!-- STATUS OVERVIEW -->
-<div class="status-grid">
-  <div class="status-card s-green"><div class="num">4</div><div class="lbl">Persönliche Antwort</div></div>
-  <div class="status-card s-red"><div class="num">4</div><div class="lbl">Email Bounced</div></div>
-  <div class="status-card s-yellow"><div class="num">1</div><div class="lbl">Absage</div></div>
-  <div class="status-card s-gray"><div class="num">1</div><div class="lbl">Auto-Antwort</div></div>
-  <div class="status-card s-blue"><div class="num">6</div><div class="lbl">Neu recherchiert</div></div>
-</div>
-
-<!-- EMAIL STATUS DETAIL -->
-<h2>1. Email-Status im Detail</h2>
-
-<div class="email-card">
-  <div class="company">✅ Abbott Diagnostics — Melanie Hennemann</div>
-  <div class="meta">melanie.hennemann@abbott.com · Antwort am 9. März 2026</div>
-  <div class="content">
-    <strong>Zusammenfassung:</strong> Möchte Angebot erstellen. Benötigt dafür:
-    <ul style="margin: 6px 0 0 16px;">
-      <li>Detaillierte Assaystatistik pro Monat/Jahr (wie viele Tests pro Parameter)</li>
-      <li>Häufigkeit der Abarbeitung pro Assay pro Woche</li>
-      <li>Wahl: Testpreisangebot oder Befundpreismodell (inkl. Kalibratoren/Kontrollen)</li>
-      <li>Bietet auch überholte Systeme (kostenreduziert) an</li>
-      <li>Persönliches Gespräch möglich (Teams/Telefon/vor Ort)</li>
-    </ul>
-  </div>
-  <div class="action">→ Teststatistik von Dr. Lebedev einholen und an Melanie Hennemann senden</div>
-</div>
-
-<div class="email-card">
-  <div class="company">✅ Snibe Diagnostic — Daniel Li (Regional Sales Manager)</div>
-  <div class="meta">daniel.li@snibe.com · Antwort am 10. März 2026</div>
-  <div class="content">
-    <strong>Zusammenfassung:</strong> Daniel Li (Regional Sales Manager für Deutschland) hat bestätigt, dass er Dr. Lebedev direkt kontaktieren wird. Email kam über interne Weiterleitung von Eyesion Wu (Int'l Marketing).
-  </div>
-  <div class="action">→ Dr. Lebedev fragen, ob Snibe sich gemeldet hat. Falls nicht in 3 Tagen: daniel.li@snibe.com direkt nachfassen</div>
-</div>
-
-<div class="email-card">
-  <div class="company">✅ Autobio Diagnostics — Edward Tang</div>
-  <div class="meta">edward.tang@autobio.com.cn · Antwort am 9. März 2026</div>
-  <div class="content">
-    <strong>Zusammenfassung:</strong> Edward Tang hat direkt an Dr. Lebedev (info@hausarzt-nephrologe.de) geschrieben — Betreff: "Autobio CLIA solution". Inhalt konnte nicht extrahiert werden (vermutlich HTML-Email mit Produktinfo/Anhängen).
-  </div>
-  <div class="action">→ Dr. Lebedev fragen, was Autobio angeboten hat. CE-IVD Status und Preisliste bestätigen lassen</div>
-</div>
-
-<div class="email-card">
-  <div class="company">⏳ Mindray Germany — Nur Auto-Ticket #983377</div>
-  <div class="meta">hilfe@mindray.de · Auto-Antwort am 8. März 2026</div>
-  <div class="content">
-    <strong>Problem:</strong> Die Email ging an die Support-Helpdesk-Adresse, nicht an den Vertrieb. Es wurde nur ein automatisches Ticket erstellt — kein persönlicher Kontakt bisher.
-  </div>
-  <div class="action urgent">→ ANRUFEN: +49 6151 3910-0 — nach Vertrieb/Sales für IVD-Analyzer fragen</div>
-</div>
-
-<div class="email-card">
-  <div class="company">❌ HUMAN GmbH — ABSAGE</div>
-  <div class="meta">Elke Sailer, e.sailer@human.de · Antwort am 9. März 2026</div>
-  <div class="content absage">
-    <strong>Absage:</strong> "Leider müssen wir Ihnen mitteilen, dass wir Ihnen das Gerät nicht anbieten können, da wir hier keinen Installations- und After-Sales-Service leisten können." Reagenzien laufen nur auf eigenen HumaCLIA-Systemen, nicht auf Vidas 3.
-  </div>
-  <div class="action" style="background: #fef9c3; color: #854d0e;">→ HUMAN fällt raus. Kein Service in Frankfurt-Region.</div>
-</div>
-
-<div class="email-card">
-  <div class="company">⏳ Labor Rhein-Main — Auto-Antwort</div>
-  <div class="meta">info@laborarztpraxis.de · Auto-Antwort am 8. März 2026</div>
-  <div class="content">
-    Automatische Bestätigung: "Ihre E-Mail ist bei uns eingegangen. Einsenderservice Mo-Fr 8-18 Uhr." — Noch keine persönliche Antwort.
-  </div>
-  <div class="action">→ Falls bis Mittwoch 12.03. keine Antwort: anrufen 069 669 003 900</div>
-</div>
-
-<!-- BOUNCED EMAILS -->
-<h2>2. Nicht zugestellte Emails — Korrigierte Adressen</h2>
+<!-- MAIN COMPARISON -->
+<h2>Gesamtvergleich — sortiert nach Kosten-Nutzen</h2>
 
 <table>
   <thead>
-    <tr><th>Firma</th><th>Falsche Adresse</th><th>Richtige Adresse</th><th>Telefon</th><th>Status</th></tr>
+    <tr>
+      <th>#</th>
+      <th>Hersteller</th>
+      <th>Gerät</th>
+      <th>Land</th>
+      <th class="num">Reagenzien</th>
+      <th class="num">Tests/h</th>
+      <th class="num">Reagenz €/Mo.</th>
+      <th class="num">Gerätekauf €</th>
+      <th>Unit-Dose</th>
+      <th>Einsparung</th>
+      <th>Bewertung</th>
+    </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><strong>DiaSorin</strong></td>
-      <td style="text-decoration: line-through; color: #999;">vertrieb@diasorin.de</td>
-      <td><strong>info_de@diasorin.com</strong></td>
-      <td>+49 6074 401-0</td>
-      <td><span class="tag tag-blue">Entwurf erstellt</span></td>
-    </tr>
-    <tr>
-      <td><strong>Beckman Coulter</strong></td>
-      <td style="text-decoration: line-through; color: #999;">info@beckman.de</td>
-      <td><strong>customerservice@beckmancoulter.com</strong></td>
-      <td>0800 0010 322</td>
-      <td><span class="tag tag-blue">Entwurf erstellt</span></td>
-    </tr>
-    <tr>
-      <td><strong>Tosoh Bioscience</strong></td>
-      <td style="text-decoration: line-through; color: #999;">sales@tosohbioscience.de</td>
-      <td><strong>info.tbg@tosoh.com</strong></td>
-      <td>+49 6155 7043 700</td>
-      <td><span class="tag tag-blue">Entwurf erstellt</span></td>
-    </tr>
-    <tr>
-      <td><strong>IDS Frankfurt</strong></td>
-      <td style="text-decoration: line-through; color: #999;">customerservice@idsplc.com</td>
-      <td><strong>dach_customerservices@idsplc.com</strong></td>
-      <td>+49 69 26019 0960</td>
-      <td><span class="tag tag-blue">Entwurf erstellt</span></td>
-    </tr>
-  </tbody>
-</table>
-<p style="font-size: 11px; color: #6b7280; margin-top: -16px; margin-bottom: 24px;">
-  ℹ️ Alle 4 Entwürfe sind in Gmail bereit zum Absenden. Dr. Lebedev ist bei allen in CC.
-</p>
-
-<!-- RANKING CHART -->
-<h2>3. Hersteller-Ranking nach Kostenersparnis</h2>
-
-<div class="rank-chart">
-  <div class="rank-row">
-    <div class="rank-pos gold">1</div>
-    <div class="rank-name">Snibe MAGLUMI X3</div>
-    <div class="rank-bar-track"><div class="rank-bar c-emerald" style="width:85%">3–6k €/Mo.</div></div>
-    <div class="rank-savings" style="color:#059669;">–70–85%</div>
-  </div>
-  <div class="rank-row">
-    <div class="rank-pos gold">2</div>
-    <div class="rank-name">Lifotronic ECL8000 🆕</div>
-    <div class="rank-bar-track"><div class="rank-bar c-teal" style="width:82%">3–7k €/Mo.</div></div>
-    <div class="rank-savings" style="color:#0d9488;">–65–85%</div>
-  </div>
-  <div class="rank-row">
-    <div class="rank-pos silver">3</div>
-    <div class="rank-name">Mindray CL-900i</div>
-    <div class="rank-bar-track"><div class="rank-bar c-blue" style="width:75%">4–8k €/Mo.</div></div>
-    <div class="rank-savings" style="color:#2563eb;">–60–80%</div>
-  </div>
-  <div class="rank-row">
-    <div class="rank-pos silver">4</div>
-    <div class="rank-name">Tosoh AIA-CL300 🆕</div>
-    <div class="rank-bar-track"><div class="rank-bar c-sky" style="width:75%">4–8k €/Mo.</div></div>
-    <div class="rank-savings" style="color:#0284c7;">–60–80%</div>
-  </div>
-  <div class="rank-row">
-    <div class="rank-pos bronze">5</div>
-    <div class="rank-name">Fujirebio G600II 🆕</div>
-    <div class="rank-bar-track"><div class="rank-bar c-amber" style="width:60%">6–10k €/Mo.</div></div>
-    <div class="rank-savings" style="color:#d97706;">–50–70%</div>
-  </div>
-  <div class="rank-row">
-    <div class="rank-pos normal">6</div>
-    <div class="rank-name">Beckman Coulter Access 2</div>
-    <div class="rank-bar-track"><div class="rank-bar c-orange" style="width:52%">7–11k €/Mo.</div></div>
-    <div class="rank-savings" style="color:#ea580c;">–45–65%</div>
-  </div>
-  <div class="rank-row">
-    <div class="rank-pos normal">7</div>
-    <div class="rank-name">DiaSorin LIAISON XS</div>
-    <div class="rank-bar-track"><div class="rank-bar c-orange" style="width:48%">8–12k €/Mo.</div></div>
-    <div class="rank-savings" style="color:#ea580c;">–40–60%</div>
-  </div>
-  <div class="rank-row">
-    <div class="rank-pos normal">8</div>
-    <div class="rank-name">Abbott Alinity i</div>
-    <div class="rank-bar-track"><div class="rank-bar c-rose" style="width:42%">9–13k €/Mo.</div></div>
-    <div class="rank-savings" style="color:#e11d48;">–35–55%</div>
-  </div>
-  <div class="rank-row" style="opacity: 0.4;">
-    <div class="rank-pos normal">✕</div>
-    <div class="rank-name" style="text-decoration: line-through;">HUMAN HumaCLIA 150</div>
-    <div class="rank-bar-track"><div class="rank-bar c-gray" style="width:55%">Abgesagt</div></div>
-    <div class="rank-savings" style="color:#999;">Kein Service</div>
-  </div>
-</div>
-
-<!-- DETAILED COMPARISON TABLE -->
-<h2>4. Detaillierter Herstellervergleich</h2>
-
-<table>
-  <thead>
-    <tr><th>Hersteller</th><th>Gerät</th><th>Technologie</th><th>Land</th><th>Standort DE</th><th>Tests/h</th><th>Parameter</th><th>Unit-Dose</th><th>CE-IVD</th><th>Bewertung</th></tr>
-  </thead>
-  <tbody>
-    <tr class="highlight">
+    <tr class="top">
+      <td><strong>1</strong></td>
       <td><strong>Snibe</strong></td>
       <td>MAGLUMI X3</td>
-      <td>CLIA</td>
-      <td>China</td>
-      <td>Kein dt. Büro</td>
-      <td>200</td>
-      <td>166</td>
-      <td>Nein</td>
-      <td>Ja</td>
-      <td><span class="tag tag-green">⭐ Top 1</span></td>
+      <td>CN</td>
+      <td class="num"><strong>166</strong></td>
+      <td class="num">200</td>
+      <td class="num"><strong>3.000–6.000</strong></td>
+      <td class="num">25.000–35.000</td>
+      <td>—</td>
+      <td><div class="bar-wrap"><div class="bar bar-g" style="width:85%">–85%</div></div></td>
+      <td><span class="stars">★★★★★</span></td>
     </tr>
-    <tr class="highlight">
-      <td><strong>Lifotronic</strong> 🆕</td>
+    <tr class="top">
+      <td><strong>2</strong></td>
+      <td><strong>Lifotronic</strong></td>
       <td>ECL8000</td>
-      <td>ECLIA</td>
-      <td>China</td>
-      <td>Via Menarini</td>
-      <td>86</td>
-      <td>100+</td>
-      <td>Nein</td>
-      <td>Ja</td>
-      <td><span class="tag tag-green">⭐ Top 2</span></td>
+      <td>CN</td>
+      <td class="num"><strong>100+</strong></td>
+      <td class="num">86</td>
+      <td class="num"><strong>3.000–7.000</strong></td>
+      <td class="num">20.000–30.000</td>
+      <td>—</td>
+      <td><div class="bar-wrap"><div class="bar bar-g" style="width:82%">–82%</div></div></td>
+      <td><span class="stars">★★★★★</span></td>
     </tr>
-    <tr class="highlight">
+    <tr class="top">
+      <td><strong>3</strong></td>
       <td><strong>Mindray</strong></td>
       <td>CL-900i</td>
-      <td>CLIA</td>
-      <td>China</td>
-      <td>Darmstadt</td>
-      <td>180</td>
-      <td>100+</td>
-      <td>Nein</td>
-      <td>Ja</td>
-      <td><span class="tag tag-green">⭐ Top 3</span></td>
+      <td>CN</td>
+      <td class="num"><strong>100+</strong></td>
+      <td class="num">180</td>
+      <td class="num"><strong>4.000–8.000</strong></td>
+      <td class="num">30.000–50.000</td>
+      <td>—</td>
+      <td><div class="bar-wrap"><div class="bar bar-b" style="width:75%">–75%</div></div></td>
+      <td><span class="stars">★★★★<span class="stars-dim">★</span></span></td>
     </tr>
-    <tr class="highlight">
-      <td><strong>Tosoh</strong> 🆕</td>
+    <tr class="top">
+      <td><strong>4</strong></td>
+      <td><strong>Tosoh</strong></td>
       <td>AIA-CL300</td>
-      <td>CLIA</td>
-      <td>Japan</td>
-      <td><strong>Griesheim!</strong></td>
-      <td>30</td>
-      <td>50+</td>
-      <td><strong>Ja!</strong></td>
-      <td>Ja</td>
-      <td><span class="tag tag-green">⭐ Top 4</span></td>
+      <td>JP</td>
+      <td class="num">50+</td>
+      <td class="num">30</td>
+      <td class="num"><strong>4.000–8.000</strong></td>
+      <td class="num">35.000–55.000</td>
+      <td><span class="tag tag-green">JA</span></td>
+      <td><div class="bar-wrap"><div class="bar bar-b" style="width:75%">–75%</div></div></td>
+      <td><span class="stars">★★★★<span class="stars-dim">★</span></span></td>
     </tr>
     <tr>
-      <td>Fujirebio 🆕</td>
+      <td>5</td>
+      <td>Fujirebio</td>
       <td>LUMIPULSE G600II</td>
-      <td>CLEIA</td>
-      <td>Japan</td>
-      <td>Hannover</td>
-      <td>60</td>
-      <td>40+</td>
-      <td>Ja</td>
-      <td>Ja</td>
-      <td><span class="tag tag-blue">Gut</span></td>
+      <td>JP</td>
+      <td class="num">40+</td>
+      <td class="num">60</td>
+      <td class="num">6.000–10.000</td>
+      <td class="num">40.000–60.000</td>
+      <td><span class="tag tag-green">JA</span></td>
+      <td><div class="bar-wrap"><div class="bar bar-y" style="width:60%">–60%</div></div></td>
+      <td><span class="stars">★★★<span class="stars-dim">★★</span></span></td>
     </tr>
     <tr>
-      <td>Beckman Coulter</td>
-      <td>Access 2</td>
-      <td>CLIA</td>
-      <td>USA</td>
-      <td>Krefeld</td>
-      <td>100</td>
-      <td>80+</td>
-      <td>Nein</td>
-      <td>Ja</td>
-      <td><span class="tag tag-gray">Gut</span></td>
-    </tr>
-    <tr>
-      <td>DiaSorin</td>
-      <td>LIAISON XS</td>
-      <td>CLIA</td>
-      <td>Italien</td>
-      <td>Dietzenbach</td>
-      <td>60</td>
-      <td>70+</td>
-      <td>Nein</td>
-      <td>Ja</td>
-      <td><span class="tag tag-gray">Gut (Vit D)</span></td>
-    </tr>
-    <tr>
-      <td>Abbott</td>
-      <td>Alinity i</td>
-      <td>CMIA</td>
-      <td>USA</td>
-      <td>Wiesbaden</td>
-      <td>200</td>
-      <td>100+</td>
-      <td>Nein</td>
-      <td>Ja</td>
-      <td><span class="tag tag-gray">Premium</span></td>
-    </tr>
-    <tr>
+      <td>6</td>
       <td>Autobio</td>
       <td>AutoLumo S900</td>
-      <td>CLIA</td>
-      <td>China</td>
-      <td>Kein dt. Büro</td>
-      <td>180</td>
-      <td>80+</td>
-      <td>Nein</td>
-      <td>Prüfen</td>
-      <td><span class="tag tag-yellow">IVDR prüfen</span></td>
+      <td>CN</td>
+      <td class="num">80+</td>
+      <td class="num">180</td>
+      <td class="num">4.000–8.000</td>
+      <td class="num">20.000–35.000</td>
+      <td>—</td>
+      <td><div class="bar-wrap"><div class="bar bar-b" style="width:70%">–70%</div></div></td>
+      <td><span class="stars">★★★<span class="stars-dim">★★</span></span> <span class="tag tag-yellow">CE?</span></td>
     </tr>
     <tr>
+      <td>7</td>
+      <td>Beckman Coulter</td>
+      <td>Access 2</td>
+      <td>US</td>
+      <td class="num">80+</td>
+      <td class="num">100</td>
+      <td class="num">7.000–11.000</td>
+      <td class="num">25.000–40.000</td>
+      <td>—</td>
+      <td><div class="bar-wrap"><div class="bar bar-o" style="width:52%">–52%</div></div></td>
+      <td><span class="stars">★★★<span class="stars-dim">★★</span></span></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>DiaSorin</td>
+      <td>LIAISON XS</td>
+      <td>IT</td>
+      <td class="num">70+</td>
+      <td class="num">60</td>
+      <td class="num">8.000–12.000</td>
+      <td class="num">30.000–50.000</td>
+      <td>—</td>
+      <td><div class="bar-wrap"><div class="bar bar-o" style="width:48%">–48%</div></div></td>
+      <td><span class="stars">★★★<span class="stars-dim">★★</span></span></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Abbott</td>
+      <td>Alinity i</td>
+      <td>US</td>
+      <td class="num"><strong>100+</strong></td>
+      <td class="num">200</td>
+      <td class="num">9.000–13.000</td>
+      <td class="num">60.000–90.000</td>
+      <td>—</td>
+      <td><div class="bar-wrap"><div class="bar bar-r" style="width:40%">–40%</div></div></td>
+      <td><span class="stars">★★<span class="stars-dim">★★★</span></span></td>
+    </tr>
+    <tr>
+      <td>10</td>
       <td>IDS</td>
       <td>iSYS</td>
-      <td>CLIA</td>
       <td>UK</td>
-      <td>Frankfurt</td>
-      <td>120</td>
-      <td>Spezial</td>
-      <td>Nein</td>
-      <td>Ja</td>
-      <td><span class="tag tag-gray">Nische</span></td>
+      <td class="num">Spezial</td>
+      <td class="num">120</td>
+      <td class="num">8.000–12.000</td>
+      <td class="num">40.000–60.000</td>
+      <td>—</td>
+      <td><div class="bar-wrap"><div class="bar bar-o" style="width:45%">–45%</div></div></td>
+      <td><span class="stars">★★<span class="stars-dim">★★★</span></span></td>
     </tr>
     <tr class="dead">
+      <td>—</td>
       <td>HUMAN</td>
       <td>HumaCLIA 150</td>
-      <td>CLIA</td>
       <td>DE</td>
-      <td>Wiesbaden</td>
-      <td>150</td>
-      <td>50+</td>
-      <td>Nein</td>
-      <td>Ja</td>
-      <td><span class="tag tag-red">Absage</span></td>
+      <td class="num">50+</td>
+      <td class="num">150</td>
+      <td class="num" colspan="2">Kein Service in Frankfurt</td>
+      <td>—</td>
+      <td>—</td>
+      <td><span class="tag tag-red">ABSAGE</span></td>
     </tr>
   </tbody>
 </table>
 
-<!-- NEW MANUFACTURERS DETAIL -->
-<h2>5. Neu recherchierte Hersteller</h2>
+<p class="note">
+  <strong>Reagenzien</strong> = Anzahl verfügbare Immunoassay-Parameter (Hormone, Tumor, Schilddrüse etc.) ·
+  <strong>Unit-Dose</strong> = 1 Cup pro Test, 0 Verschwendung ·
+  <strong>Gerätekauf</strong> = Listenpreis Neugerät (viele bieten Mietmodell mit Reagenz-Commitment)
+</p>
 
-<div class="new-card recommended">
-  <h4>🏆 Tosoh Bioscience — AIA-CL300 (von Dr. Lebedev gefunden)</h4>
-  <div class="detail">
-    <strong>Technologie:</strong> Chemilumineszenz (CLIA) — neueste Generation<br>
-    <strong>Unit-Dose-System:</strong> 1 Cup = 1 Test, alle Reagenzien vorgeladen<br>
-    <strong>Kein Reagenzverschwendung</strong> — ideal für Einzelpraxis<br>
-    <strong>Kalibration:</strong> 90 Tage stabil
-  </div>
-  <div class="detail">
-    <strong>Standort:</strong> Griesheim bei Darmstadt (20 Min von Frankfurt)<br>
-    <strong>Telefon:</strong> +49 6155 7043 700<br>
-    <strong>Email:</strong> info.tbg@tosoh.com<br>
-    <strong>Noch klären:</strong> AMH, Anti-TPO, HBsAg Verfügbarkeit
-  </div>
-</div>
-
-<div class="new-card recommended">
-  <h4>🏆 Lifotronic — ECL8000 (via Menarini/QuidelOrtho)</h4>
-  <div class="detail">
-    <strong>Technologie:</strong> ECLIA — gleiche Technologie wie Roche Elecsys<br>
-    <strong>Parameter:</strong> 100+ (Schilddrüse, Fertilität, Tumor, Herz)<br>
-    <strong>Durchsatz:</strong> 86 Tests/h, kompakt (650x620x650 mm)
-  </div>
-  <div class="detail">
-    <strong>EU-Vertrieb:</strong> QuidelOrtho + Menarini Diagnostics<br>
-    <strong>CE-IVD:</strong> Ja + ISO 13485<br>
-    <strong>Vorteil:</strong> Roche-Qualität zu China-Preisen
-  </div>
-</div>
-
-<div class="new-card">
-  <h4>Fujirebio — LUMIPULSE G600II</h4>
-  <div class="detail">
-    <strong>Technologie:</strong> CLEIA, Unit-Dose-Kartuschen<br>
-    <strong>Durchsatz:</strong> 60 Tests/h, Benchtop<br>
-    <strong>Spezialität:</strong> Alzheimer-Biomarker
-  </div>
-  <div class="detail">
-    <strong>DE-Kontakt:</strong> Hannover, +49-511-8573931<br>
-    <strong>CE-IVD:</strong> Ja<br>
-    <strong>Menü evtl. enger</strong> als Snibe/Tosoh
-  </div>
-</div>
-
-<div class="new-card">
-  <h4>Boditech Med — ichroma II (Backup/POCT)</h4>
-  <div class="detail">
-    <strong>Technologie:</strong> FIA, Point-of-Care<br>
-    <strong>Ergebnis:</strong> 3–15 Minuten<br>
-    <strong>Deckt AMH ab!</strong> (fehlt evtl. bei Tosoh)
-  </div>
-  <div class="detail">
-    <strong>DE-Distributor:</strong> nal von minden<br>
-    <strong>CE-IVD:</strong> Ja<br>
-    <strong>Nur als Backup</strong> — nicht Hauptgerät
-  </div>
-</div>
-
-<!-- ACTION PLAN -->
-<h2>6. Aktionsplan — Priorisiert</h2>
-
-<ul class="action-list">
-  <li class="urgent">
-    <div class="prio p1">1</div>
-    <div class="action-text">
-      <strong>4 Gmail-Entwürfe absenden (DiaSorin, Beckman, Tosoh, IDS)</strong>
-      <span>Entwürfe sind fertig in Gmail → Prüfen und Senden. Alle mit korrigierten Adressen.</span>
-    </div>
-  </li>
-  <li class="urgent">
-    <div class="prio p1">2</div>
-    <div class="action-text">
-      <strong>Mindray anrufen: +49 6151 3910-0</strong>
-      <span>Direkt nach Vertrieb/Sales für IVD-Analyzer fragen. Nur Support-Ticket bisher.</span>
-    </div>
-  </li>
-  <li class="important">
-    <div class="prio p2">3</div>
-    <div class="action-text">
-      <strong>Teststatistik von Dr. Lebedev einholen → an Abbott senden</strong>
-      <span>Melanie Hennemann (melanie.hennemann@abbott.com) braucht: Tests pro Parameter/Monat, Häufigkeit/Woche. Dann erstellt sie ein konkretes Angebot.</span>
-    </div>
-  </li>
-  <li class="important">
-    <div class="prio p2">4</div>
-    <div class="action-text">
-      <strong>Dr. Lebedev fragen: Was hat Autobio (Edward Tang) und Snibe (Daniel Li) angeboten?</strong>
-      <span>Beide haben direkt an Dr. Lebedev geschrieben. Antworten einholen und in Vergleichstabelle aufnehmen.</span>
-    </div>
-  </li>
-  <li class="important">
-    <div class="prio p2">5</div>
-    <div class="action-text">
-      <strong>Tosoh Griesheim anrufen: +49 6155 7043 700</strong>
-      <span>AIA-CL300 Demo anfragen. Klären: AMH, Anti-TPO, HBsAg auf CL-Plattform verfügbar?</span>
-    </div>
-  </li>
-  <li>
-    <div class="prio p3">6</div>
-    <div class="action-text">
-      <strong>Lifotronic/Menarini kontaktieren</strong>
-      <span>Neuer starker Kandidat: ECL8000 mit ECLIA-Technologie (Roche-Qualität). EU-Vertrieb über Menarini Diagnostics.</span>
-    </div>
-  </li>
-  <li>
-    <div class="prio p3">7</div>
-    <div class="action-text">
-      <strong>Fujirebio Hannover kontaktieren: +49-511-8573931</strong>
-      <span>LUMIPULSE G600II — Unit-Dose, Premium-Qualität. Parameter-Abdeckung klären.</span>
-    </div>
-  </li>
-  <li>
-    <div class="prio p4">8</div>
-    <div class="action-text">
-      <strong>analytica 2026 München — 24.–27. März</strong>
-      <span>Hersteller direkt am Stand treffen. Beste Konditionen werden oft auf Messen verhandelt.</span>
-    </div>
-  </li>
-</ul>
-
-<!-- ECONOMIC OVERVIEW -->
-<h2>7. Wirtschaftlichkeitsrechnung</h2>
+<!-- PARAMETER COVERAGE -->
+<h2>Parameter-Abdeckung (Dr. Lebedevs 30 Kern-Assays)</h2>
 
 <table>
   <thead>
-    <tr><th>Szenario</th><th>Kosten/Monat</th><th>Kosten/Jahr</th><th>Einsparung/Jahr</th><th>Break-Even</th></tr>
+    <tr>
+      <th>Gruppe</th>
+      <th>Parameter</th>
+      <th>Snibe</th>
+      <th>Mindray</th>
+      <th>Tosoh</th>
+      <th>Lifotronic</th>
+      <th>Abbott</th>
+      <th>Beckman</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Schilddrüse</strong></td>
+      <td>TSH, fT3, fT4, Anti-TPO, Anti-TG</td>
+      <td class="num">5/5</td>
+      <td class="num">5/5</td>
+      <td class="num">4/5*</td>
+      <td class="num">5/5</td>
+      <td class="num">5/5</td>
+      <td class="num">5/5</td>
+    </tr>
+    <tr>
+      <td><strong>Hormone</strong></td>
+      <td>FSH, LH, E2, Prog, PRL, Testo, AMH</td>
+      <td class="num">7/7</td>
+      <td class="num">7/7</td>
+      <td class="num">6/7*</td>
+      <td class="num">7/7</td>
+      <td class="num">7/7</td>
+      <td class="num">6/7</td>
+    </tr>
+    <tr>
+      <td><strong>Tumormarker</strong></td>
+      <td>AFP, CEA, PSA, fPSA, CA125, CA19-9, CA15-3</td>
+      <td class="num">7/7</td>
+      <td class="num">7/7</td>
+      <td class="num">5/7*</td>
+      <td class="num">7/7</td>
+      <td class="num">7/7</td>
+      <td class="num">7/7</td>
+    </tr>
+    <tr>
+      <td><strong>Herz</strong></td>
+      <td>Troponin I, NT-proBNP</td>
+      <td class="num">2/2</td>
+      <td class="num">2/2</td>
+      <td class="num">2/2</td>
+      <td class="num">2/2</td>
+      <td class="num">2/2</td>
+      <td class="num">2/2</td>
+    </tr>
+    <tr>
+      <td><strong>Vitamine</strong></td>
+      <td>Vit D, B12, Folsäure</td>
+      <td class="num">3/3</td>
+      <td class="num">3/3</td>
+      <td class="num">2/3*</td>
+      <td class="num">3/3</td>
+      <td class="num">3/3</td>
+      <td class="num">3/3</td>
+    </tr>
+    <tr>
+      <td><strong>Sonstiges</strong></td>
+      <td>Ferritin, Cortisol, Insulin, C-Peptid</td>
+      <td class="num">4/4</td>
+      <td class="num">4/4</td>
+      <td class="num">3/4*</td>
+      <td class="num">4/4</td>
+      <td class="num">4/4</td>
+      <td class="num">4/4</td>
+    </tr>
+    <tr>
+      <td><strong>Infektionen</strong></td>
+      <td>HBsAg, Anti-HCV</td>
+      <td class="num">2/2</td>
+      <td class="num">2/2</td>
+      <td class="num">1/2*</td>
+      <td class="num">2/2</td>
+      <td class="num">2/2</td>
+      <td class="num">2/2</td>
+    </tr>
+    <tr style="background: #f0fdf4; font-weight: 700;">
+      <td colspan="2"><strong>GESAMT</strong></td>
+      <td class="num"><strong>30/30</strong></td>
+      <td class="num"><strong>30/30</strong></td>
+      <td class="num"><strong>23/30*</strong></td>
+      <td class="num"><strong>30/30</strong></td>
+      <td class="num"><strong>30/30</strong></td>
+      <td class="num"><strong>29/30</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="note">
+  * <strong>Tosoh AIA-CL300:</strong> Neue Plattform — CL AIA-PACK Menü noch im Aufbau. AMH, Anti-TPO, HBsAg noch bestätigen.
+  Unit-Dose-Vorteil gleicht engeres Menü teilweise aus (0 Verschwendung = niedrigere Kosten pro Test).
+</p>
+
+<!-- COST SCENARIOS -->
+<h2>Kostenszenarien — Jahresvergleich</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Szenario</th>
+      <th class="num">Reagenz/Mo.</th>
+      <th class="num">Reagenz/Jahr</th>
+      <th class="num">Gerätekauf (einmalig)</th>
+      <th class="num">Einsparung/Jahr</th>
+      <th class="num">ROI Gerätekauf</th>
+    </tr>
   </thead>
   <tbody>
     <tr style="background: #fef2f2;">
-      <td><strong>Aktuell (Vidas 3)</strong></td>
-      <td>>20.000 €</td>
-      <td>>240.000 €</td>
-      <td>—</td>
-      <td>—</td>
+      <td><strong>Aktuell: bioMerieux Vidas 3</strong></td>
+      <td class="num" style="color:#dc2626; font-weight:800;">>20.000 €</td>
+      <td class="num" style="color:#dc2626; font-weight:800;">>240.000 €</td>
+      <td class="num">—</td>
+      <td class="num">—</td>
+      <td class="num">—</td>
     </tr>
-    <tr class="highlight">
-      <td><strong>Best Case (Snibe/Lifotronic)</strong></td>
-      <td>~4.000 €</td>
-      <td>~48.000 €</td>
-      <td><strong style="color:#16a34a;">~192.000 €</strong></td>
-      <td>Sofort (Mietmodell)</td>
+    <tr style="background: #f0fdf4;">
+      <td><strong>Snibe MAGLUMI X3</strong></td>
+      <td class="num">~4.500 €</td>
+      <td class="num">~54.000 €</td>
+      <td class="num">~30.000 €</td>
+      <td class="num" style="color:#16a34a; font-weight:800;">~186.000 €</td>
+      <td class="num">2 Monate</td>
     </tr>
-    <tr class="highlight">
-      <td><strong>Realistisch (Mindray/Tosoh)</strong></td>
-      <td>~6.000 €</td>
-      <td>~72.000 €</td>
-      <td><strong style="color:#16a34a;">~168.000 €</strong></td>
-      <td>Sofort (Mietmodell)</td>
+    <tr style="background: #f0fdf4;">
+      <td><strong>Lifotronic ECL8000</strong></td>
+      <td class="num">~5.000 €</td>
+      <td class="num">~60.000 €</td>
+      <td class="num">~25.000 €</td>
+      <td class="num" style="color:#16a34a; font-weight:800;">~180.000 €</td>
+      <td class="num">2 Monate</td>
+    </tr>
+    <tr style="background: #f0fdf4;">
+      <td><strong>Mindray CL-900i</strong></td>
+      <td class="num">~6.000 €</td>
+      <td class="num">~72.000 €</td>
+      <td class="num">~40.000 €</td>
+      <td class="num" style="color:#16a34a; font-weight:800;">~168.000 €</td>
+      <td class="num">3 Monate</td>
+    </tr>
+    <tr style="background: #f0fdf4;">
+      <td><strong>Tosoh AIA-CL300</strong></td>
+      <td class="num">~6.000 €</td>
+      <td class="num">~72.000 €</td>
+      <td class="num">~45.000 €</td>
+      <td class="num" style="color:#16a34a; font-weight:800;">~168.000 €</td>
+      <td class="num">3 Monate</td>
     </tr>
     <tr>
-      <td>Konservativ (Abbott/Beckman)</td>
-      <td>~10.000 €</td>
-      <td>~120.000 €</td>
-      <td>~120.000 €</td>
-      <td>1–2 Monate</td>
+      <td>Abbott Alinity i</td>
+      <td class="num">~11.000 €</td>
+      <td class="num">~132.000 €</td>
+      <td class="num">~75.000 €</td>
+      <td class="num">~108.000 €</td>
+      <td class="num">8 Monate</td>
     </tr>
     <tr>
-      <td>Nur Verhandlung (bioMerieux)</td>
-      <td>~16.000 €</td>
-      <td>~192.000 €</td>
-      <td>~48.000 €</td>
-      <td>Sofort</td>
+      <td>Beckman Coulter Access 2</td>
+      <td class="num">~9.000 €</td>
+      <td class="num">~108.000 €</td>
+      <td class="num">~32.000 €</td>
+      <td class="num">~132.000 €</td>
+      <td class="num">3 Monate</td>
     </tr>
   </tbody>
 </table>
 
-<p style="font-size: 11px; color: #6b7280; margin-top: -16px;">
-  * Alle Zahlen sind Schätzungen. Verbindliche Preise kommen per Angebot der Hersteller.<br>
-  * Zusätzlich: Verkauf eines Vidas 3 auf Labexchange.com bringt 8.000–15.000 € Einmalerlös.
+<p class="note">
+  <strong>Mietmodell:</strong> Die meisten Hersteller bieten Gerät kostenlos/günstig bei Reagenz-Commitment (2–5 Jahre). Dann entfällt Gerätekauf.
+  <strong>Vidas 3 Verkauf:</strong> Gebrauchtwert ca. 8.000–15.000 € pro Gerät auf Labexchange.com.
 </p>
 
-<!-- FOOTER -->
+<!-- TOP 4 SUMMARY -->
+<h2>Empfehlung: Top 4 Kandidaten</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Hersteller</th>
+      <th>Warum</th>
+      <th class="num">Reagenzien</th>
+      <th class="num">Kosten/Mo.</th>
+      <th class="num">Gerätekauf</th>
+      <th>Besonderheit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="top">
+      <td><span class="stars">★</span> 1</td>
+      <td><strong>Snibe MAGLUMI X3</strong></td>
+      <td>Günstigste Reagenzien, breitestes Menü</td>
+      <td class="num"><strong>166</strong></td>
+      <td class="num"><strong>3–6k €</strong></td>
+      <td class="num">25–35k €</td>
+      <td><span class="tag tag-green">Preis-Leistung #1</span></td>
+    </tr>
+    <tr class="top">
+      <td><span class="stars">★</span> 2</td>
+      <td><strong>Lifotronic ECL8000</strong></td>
+      <td>Roche-Technologie (ECLIA) zu China-Preisen</td>
+      <td class="num"><strong>100+</strong></td>
+      <td class="num"><strong>3–7k €</strong></td>
+      <td class="num">20–30k €</td>
+      <td><span class="tag tag-blue">Roche-Qualität</span></td>
+    </tr>
+    <tr class="top">
+      <td><span class="stars">★</span> 3</td>
+      <td><strong>Mindray CL-900i</strong></td>
+      <td>Niederlassung Darmstadt, großes Menü</td>
+      <td class="num"><strong>100+</strong></td>
+      <td class="num"><strong>4–8k €</strong></td>
+      <td class="num">30–50k €</td>
+      <td><span class="tag tag-blue">Lokaler Support</span></td>
+    </tr>
+    <tr class="top">
+      <td><span class="stars">★</span> 4</td>
+      <td><strong>Tosoh AIA-CL300</strong></td>
+      <td>Unit-Dose = 0 Verschwendung, 20 Min v. FFM</td>
+      <td class="num">50+</td>
+      <td class="num"><strong>4–8k €</strong></td>
+      <td class="num">35–55k €</td>
+      <td><span class="tag tag-green">Unit-Dose</span> <span class="tag tag-blue">Lokal</span></td>
+    </tr>
+  </tbody>
+</table>
+
 <div class="footer">
-  <p>Erstellt von Koren Pollak · Film-labor · koren@film-labor.de · 10. März 2026<br>
-  Basiert auf 10 Email-Anfragen, Gmail-Analyse, und Web-Recherche zu 16 Herstellern.<br>
-  Alle Kostenschätzungen basieren auf Marktdaten — verbindliche Zahlen durch Herstellerangebote.</p>
-  <span class="conf">Intern · Vertraulich</span>
+  Koren Pollak · Film-labor · koren@film-labor.de · 10. März 2026<br>
+  Schätzungen basierend auf Marktdaten — verbindliche Preise per Herstellerangebot.
 </div>
 
 </body>
