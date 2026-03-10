@@ -62,6 +62,31 @@
   .note { font-size: 11px; color: #6b7280; margin-top: -12px; margin-bottom: 20px; }
   .note strong { color: #374151; }
 
+  /* DETAIL DROPDOWNS */
+  .firm-details { margin-bottom: 28px; }
+  details { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
+  details[open] { border-color: #3b82f6; }
+  summary { padding: 12px 16px; cursor: pointer; font-size: 13px; font-weight: 700; background: #fafafa; display: flex; align-items: center; gap: 10px; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "▸"; font-size: 12px; color: #999; transition: transform 0.2s; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details[open] summary { background: #eff6ff; border-bottom: 1px solid #e5e7eb; }
+  .detail-body { padding: 14px 16px; font-size: 12px; }
+  .detail-body .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .detail-body .col h4 { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .detail-body .col.pro h4 { color: #16a34a; }
+  .detail-body .col.con h4 { color: #dc2626; }
+  .detail-body ul { margin: 0; padding-left: 16px; }
+  .detail-body li { margin-bottom: 4px; color: #374151; }
+  .detail-body .verdict { margin-top: 10px; padding: 8px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+  .verdict-green { background: #dcfce7; color: #166534; }
+  .verdict-yellow { background: #fef9c3; color: #854d0e; }
+  .verdict-red { background: #fef2f2; color: #991b1b; }
+  .firm-score { font-size: 18px; font-weight: 900; margin-left: auto; }
+  .firm-score-good { color: #16a34a; }
+  .firm-score-ok { color: #d97706; }
+  .firm-score-bad { color: #dc2626; }
+
   /* FOOTER */
   .footer { margin-top: 28px; padding-top: 16px; border-top: 2px solid #111; font-size: 10px; color: #999; }
 
@@ -417,6 +442,333 @@
   <strong>Quellen:</strong> SelectScience, PubMed, Mislabeled Specimen, FDA, Nature, ALZFORUM.
   Bewertungen basieren auf unabhängigen Studien und Nutzer-Reviews — nicht auf Herstellerangaben.
 </p>
+
+<!-- DETAIL DROPDOWNS -->
+<h2>Hersteller-Profile — Vorteile & Nachteile (zum Aufklappen)</h2>
+
+<div class="firm-details">
+
+<details>
+  <summary>
+    <span class="tag tag-green">1</span> Tosoh — AIA-CL300
+    <span class="firm-score firm-score-good">4.0/5</span>
+  </summary>
+  <div class="detail-body">
+    <div class="row">
+      <div class="col pro">
+        <h4>Vorteile</h4>
+        <ul>
+          <li><strong>Unit-Dose-System:</strong> 1 Cup = 1 Test. Null Verschwendung — ideal für Einzelpraxis mit begrenztem Volumen</li>
+          <li><strong>Höchste Zuverlässigkeit:</strong> "Bricht nie zusammen" (SelectScience-Reviews). Minimale Wartung nötig</li>
+          <li><strong>Direkt vor der Tür:</strong> Niederlassung Griesheim bei Darmstadt — 20 Min von Frankfurt</li>
+          <li><strong>Kalibration 90 Tage stabil</strong> — spart Reagenzien und Zeit</li>
+          <li><strong>Gleiche Reagenzien</strong> wie größere CL1200/CL2400 Systeme</li>
+          <li><strong>Japanische Qualität:</strong> Tosoh ist seit 40+ Jahren im IVD-Markt</li>
+        </ul>
+      </div>
+      <div class="col con">
+        <h4>Nachteile</h4>
+        <ul>
+          <li><strong>Nur 50+ Parameter:</strong> CL AIA-PACK Menü noch im Aufbau. AMH, Anti-TPO, HBsAg noch unklar</li>
+          <li><strong>Nur 30 Tests/h:</strong> Niedrigster Durchsatz aller Kandidaten</li>
+          <li><strong>Neues System (Mai 2023):</strong> Wenig Langzeitdaten in klinischen Laboren</li>
+          <li><strong>Gerätekauf teurer:</strong> 35–55k € vs. 25–35k € bei Snibe</li>
+          <li><strong>EU-Service über Belgien:</strong> Lokaler First-Line-Support, aber kein eigenes DE-Serviceteam</li>
+        </ul>
+      </div>
+    </div>
+    <div class="verdict verdict-green">Empfehlung: Top-Kandidat für Dr. Lebedev. Unit-Dose + lokaler Support + höchste Zuverlässigkeit. Parameter-Menü vorab klären!</div>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="tag tag-green">2</span> Mindray — CL-900i
+    <span class="firm-score firm-score-good">3.4/5</span>
+  </summary>
+  <div class="detail-body">
+    <div class="row">
+      <div class="col pro">
+        <h4>Vorteile</h4>
+        <ul>
+          <li><strong>100+ Parameter:</strong> Breites Menü deckt alle 30 Kern-Assays ab (30/30)</li>
+          <li><strong>99–100% Übereinstimmung</strong> mit Abbott Architect in publizierten Studien (Nature, PubMed)</li>
+          <li><strong>Niederlassung Darmstadt:</strong> Eigenes dt. Büro + Hotline +49 6151 3910-0</li>
+          <li><strong>180 Tests/h:</strong> Hoher Durchsatz für Zukunftswachstum</li>
+          <li><strong>Gutes Preis-Leistung:</strong> 4–8k €/Mo. Reagenzien, Gerät 30–50k €</li>
+          <li><strong>HIV/HBsAg:</strong> 100% Sensitivität, 95–100% Spezifität in Studien</li>
+        </ul>
+      </div>
+      <div class="col con">
+        <h4>Nachteile</h4>
+        <ul>
+          <li><strong>Geschlossenes Reagenzsystem:</strong> Nur Mindray-Reagenzien (kein offenes System)</li>
+          <li><strong>28 Tage Kalibrationsstabilität:</strong> Kürzer als Tosoh (90 Tage) oder Roche</li>
+          <li><strong>Dünnere Studienlage:</strong> Meiste Validierungen von Mindray-nahen Studien</li>
+          <li><strong>Service-Netz kleiner</strong> als Roche/Siemens — weniger Außendienst-Techniker</li>
+          <li><strong>Nur Support-Ticket bisher:</strong> Email ging an hilfe@ statt Vertrieb</li>
+        </ul>
+      </div>
+    </div>
+    <div class="verdict verdict-green">Empfehlung: Starke Budget-Option mit vollem Menü. Vor Ort in Darmstadt. Anrufen und Demo vereinbaren.</div>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="tag tag-blue">3</span> Beckman Coulter — Access 2
+    <span class="firm-score firm-score-good">3.8/5</span>
+  </summary>
+  <div class="detail-body">
+    <div class="row">
+      <div class="col pro">
+        <h4>Vorteile</h4>
+        <ul>
+          <li><strong>Bewährtestes System:</strong> 20+ Jahre am Markt, Millionen Tests durchgeführt</li>
+          <li><strong>Bester DE-Service:</strong> Beckman Coulter GmbH Krefeld + München. BeckmanConnect Remote-Diagnose</li>
+          <li><strong>80+ Parameter:</strong> Deckt 29/30 Kern-Assays ab</li>
+          <li><strong>Gebraucht günstig:</strong> Auf Labexchange.com ab 8–15k € verfügbar</li>
+          <li><strong>95,8% Konkordanz</strong> in klinischen Evaluierungen</li>
+          <li><strong>"Läuft jeden Tag 20 Jahre ohne Drama"</strong> — Diamond Diagnostics</li>
+        </ul>
+      </div>
+      <div class="col con">
+        <h4>Nachteile</h4>
+        <ul>
+          <li><strong>Teurer als China-Hersteller:</strong> 7–11k €/Mo. Reagenzien</li>
+          <li><strong>Häufige Kalibrationen:</strong> Mehr als bei Wettbewerbern, erhöht laufende Kosten</li>
+          <li><strong>Alternde Plattform:</strong> Bewährt, aber technologisch nicht mehr aktuell</li>
+          <li><strong>Vereinzelt mechanische Probleme:</strong> "Teile brechen alle paar Monate" (Nutzer-Review)</li>
+          <li><strong>Email bounced:</strong> Korrigierte Adresse customerservice@beckmancoulter.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="verdict verdict-yellow">Solide Wahl: Sicherste Option durch besten DE-Service. Aber höhere Reagenzkosten. Ideal als Backup oder wenn Service-Sicherheit Priorität hat.</div>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="tag tag-blue">4</span> DiaSorin — LIAISON XS
+    <span class="firm-score firm-score-good">3.8/5</span>
+  </summary>
+  <div class="detail-body">
+    <div class="row">
+      <div class="col pro">
+        <h4>Vorteile</h4>
+        <ul>
+          <li><strong>Vitamin D Weltmarktführer:</strong> Beste Vit D Assays am Markt</li>
+          <li><strong>All-inclusive Reagenz-Format:</strong> Reagent Integral verhindert Verschwendung, vereinfacht Lagerhaltung</li>
+          <li><strong>Dietzenbach bei Frankfurt:</strong> 20 Min Entfernung — lokal!</li>
+          <li><strong>Urgent Sample:</strong> Eilproben können jederzeit eingeschoben werden</li>
+          <li><strong>Hohe Nutzerzufriedenheit:</strong> "Staff are very happy" — Ease of Use 5/5</li>
+          <li><strong>70+ Parameter:</strong> Solides Routine-Menü</li>
+        </ul>
+      </div>
+      <div class="col con">
+        <h4>Nachteile</h4>
+        <ul>
+          <li><strong>Teurer:</strong> 8–12k €/Mo. — nur 40–60% Einsparung</li>
+          <li><strong>Nur 60 Tests/h:</strong> Mittlerer Durchsatz</li>
+          <li><strong>Wenige unabhängige Reviews:</strong> LIAISON XS ist relativ neu, kleine Community</li>
+          <li><strong>Kleineres Service-Netz</strong> als Abbott/Beckman in DE</li>
+          <li><strong>Email bounced:</strong> Korrigierte Adresse info_de@diasorin.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="verdict verdict-yellow">Gute Option: Besonders wenn Vitamin D ein Schwerpunkt ist. Lokal in Dietzenbach. Aber teurer als Mindray/Tosoh.</div>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="tag tag-blue">5</span> Fujirebio — LUMIPULSE G600II
+    <span class="firm-score firm-score-ok">3.6/5</span>
+  </summary>
+  <div class="detail-body">
+    <div class="row">
+      <div class="col pro">
+        <h4>Vorteile</h4>
+        <ul>
+          <li><strong>Unit-Dose-Kartuschen:</strong> Wie Tosoh — 0 Verschwendung, flexibel</li>
+          <li><strong>Premium-Qualität:</strong> Japanische Präzision, CLEIA-Technologie</li>
+          <li><strong>Spezialist für Alzheimer/Neuro:</strong> Erste FDA-Zulassung für pTau 217 Bluttest</li>
+          <li><strong>Fujirebio Europe (Gent):</strong> Etablierte EU-Präsenz</li>
+          <li><strong>Evaluierungsprogramm:</strong> Testgerät vor Kauf möglich</li>
+        </ul>
+      </div>
+      <div class="col con">
+        <h4>Nachteile</h4>
+        <ul>
+          <li><strong>Nur 40+ Parameter:</strong> Engeres Menü, evtl. nicht alle 30 Kern-Assays</li>
+          <li><strong>Teuer:</strong> 6–10k €/Mo. Reagenzien, 40–60k € Gerätekauf</li>
+          <li><strong>Reagenz-Lot-Problem:</strong> Bis 40% falsch-positive bei pTau 217 durch QC-Problem (ALZFORUM)</li>
+          <li><strong>Standort Hannover:</strong> Weiter weg als Tosoh/DiaSorin</li>
+          <li><strong>Eher Nischen-Gerät:</strong> Nicht optimal für breites Routine-Labor</li>
+        </ul>
+      </div>
+    </div>
+    <div class="verdict verdict-yellow">Nische: Stark bei Spezialtests (Neuro/Alzheimer). Für breites Routine-Labor gibt es bessere Optionen.</div>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="tag tag-yellow">6</span> Snibe — MAGLUMI X3
+    <span class="firm-score firm-score-ok">2.9/5</span>
+  </summary>
+  <div class="detail-body">
+    <div class="row">
+      <div class="col pro">
+        <h4>Vorteile</h4>
+        <ul>
+          <li><strong>166 Parameter — breitestes Menü!</strong> Mehr als jeder andere Kandidat</li>
+          <li><strong>Günstigste Reagenzien:</strong> 3–6k €/Mo. — bis 85% Einsparung</li>
+          <li><strong>200 Tests/h:</strong> Höchster Durchsatz der Kompaktgeräte</li>
+          <li><strong>4.2/5 auf SelectScience:</strong> "Extrem robustes System" (MAGLUMI 800 Reviews)</li>
+          <li><strong>Günstigster Gerätekauf:</strong> 25–35k €</li>
+          <li><strong>30.000+ Installationen weltweit</strong></li>
+        </ul>
+      </div>
+      <div class="col con">
+        <h4>Nachteile</h4>
+        <ul>
+          <li><strong>CV% 5–9%:</strong> Deutlich unpräziser als Roche (0,5–3%) und Abbott (2–5%)</li>
+          <li><strong>KEIN deutscher Service!</strong> Nur über Distributoren — Reaktionszeit unklar</li>
+          <li><strong>Cortisol -41,8% Bias vs. Referenzmethode</strong> (PubMed-Studie)</li>
+          <li><strong>Vitamin D Sensitivität nur 81–93%</strong> vs. Abbott 97–99%</li>
+          <li><strong>Fälschungsproblem:</strong> Snibe warnt vor gefälschten Reagenzien in manchen Märkten</li>
+          <li><strong>Meiste Studien herstellernah</strong> — wenig unabhängige Validierung</li>
+        </ul>
+      </div>
+    </div>
+    <div class="verdict verdict-red">Achtung: Günstigste Option, aber Qualitätseinbußen bei Präzision. Kein DE-Service ist ein Risiko für eine Arztpraxis. Nur empfehlenswert als Backup-Gerät.</div>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="tag tag-yellow">7</span> Abbott — Alinity i
+    <span class="firm-score firm-score-ok">3.3/5</span>
+  </summary>
+  <div class="detail-body">
+    <div class="row">
+      <div class="col pro">
+        <h4>Vorteile</h4>
+        <ul>
+          <li><strong>100+ Parameter:</strong> Eines der breitesten Menüs am Markt (30/30 Kern-Assays)</li>
+          <li><strong>200 Tests/h:</strong> Hoher Durchsatz</li>
+          <li><strong>Abbott GmbH Wiesbaden:</strong> Großer etablierter Hersteller in DE</li>
+          <li><strong>Melanie Hennemann hat bereits geantwortet</strong> — persönlicher Kontakt</li>
+          <li><strong>Überholte Systeme verfügbar:</strong> Kostenreduziertes Refurbished-Angebot</li>
+        </ul>
+      </div>
+      <div class="col con">
+        <h4>Nachteile</h4>
+        <ul>
+          <li><strong>"Steht mehr als es läuft"</strong> — mehrere Lab-Techniker-Reviews (Mislabeled Specimen)</li>
+          <li><strong>Zuverlässigkeit nur 2,3/5</strong> in 20 Nutzer-Reviews</li>
+          <li><strong>Transportarm braucht komplettes Redesign</strong> — bekannter Konstruktionsfehler</li>
+          <li><strong>FDA-Recall:</strong> Software-Fehler verursachte falsch-positive Ergebnisse</li>
+          <li><strong>Temperatursensibel:</strong> QC-Fehler bei >30°C Raumtemperatur</li>
+          <li><strong>Teuerste Option:</strong> 9–13k €/Mo. Reagenzien, 60–90k € Gerätekauf</li>
+        </ul>
+      </div>
+    </div>
+    <div class="verdict verdict-red">Warnung: Trotz großem Namen erhebliche Zuverlässigkeitsprobleme. Teuerste Option mit schlechtester Uptime. Nur sinnvoll wenn Abbott ein Refurbished-Architect-Angebot macht.</div>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="tag tag-gray">8</span> Autobio — AutoLumo S900
+    <span class="firm-score firm-score-bad">2.4/5</span>
+  </summary>
+  <div class="detail-body">
+    <div class="row">
+      <div class="col pro">
+        <h4>Vorteile</h4>
+        <ul>
+          <li><strong>80+ Parameter:</strong> Solides Menü, 180 Tests/h</li>
+          <li><strong>Günstig:</strong> 4–8k €/Mo., Gerätekauf 20–35k €</li>
+          <li><strong>Edward Tang hat direkt geantwortet</strong> — proaktiver Kontakt</li>
+        </ul>
+      </div>
+      <div class="col con">
+        <h4>Nachteile</h4>
+        <ul>
+          <li><strong>Kein DE-Büro, kein EU-Service:</strong> Direkt aus China</li>
+          <li><strong>CE-IVDR Status unklar:</strong> Muss geprüft werden</li>
+          <li><strong>Keine unabhängigen Reviews oder Studien</strong> in EU-Laboren</li>
+          <li><strong>Kein deutscher Distributor bekannt</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="verdict verdict-red">Hohes Risiko: Ohne EU-Service und CE-Klärung nicht für eine Arztpraxis empfehlenswert.</div>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="tag tag-gray">9</span> Lifotronic — ECL8000
+    <span class="firm-score firm-score-bad">2.4/5</span>
+  </summary>
+  <div class="detail-body">
+    <div class="row">
+      <div class="col pro">
+        <h4>Vorteile</h4>
+        <ul>
+          <li><strong>ECLIA-Technologie:</strong> Gleiche Methode wie Roche Elecsys — theoretisch hohe Qualität</li>
+          <li><strong>100+ Parameter, 9 Min Erstresultat</strong> bei Herzmarkern</li>
+          <li><strong>QuidelOrtho-Partnerschaft 2025:</strong> EU-Vertrieb im Aufbau</li>
+          <li><strong>Günstigste Gerätekauf:</strong> 20–30k €</li>
+        </ul>
+      </div>
+      <div class="col con">
+        <h4>Nachteile</h4>
+        <ul>
+          <li><strong>Komplett unbekannt in Europa:</strong> Keine einzige unabhängige Review gefunden</li>
+          <li><strong>Kein DE-Service, kein EU-Service:</strong> QuidelOrtho-Deal ist brandneu</li>
+          <li><strong>SARS-CoV-2 Studie:</strong> Nur 87–93% Sensitivität/Spezifität — mäßig</li>
+          <li><strong>Keine Forum-Diskussionen, keine Lab-Erfahrungen</strong></li>
+          <li><strong>"Rave Reviews" nur Marketing-Material</strong> — nicht verifiziert</li>
+        </ul>
+      </div>
+    </div>
+    <div class="verdict verdict-red">Nicht empfohlen: Zu hohes Risiko. Keine Erfahrungswerte in Europa. Frühestens in 2–3 Jahren prüfen wenn QuidelOrtho den EU-Vertrieb aufgebaut hat.</div>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="tag tag-gray">10</span> IDS — iSYS
+    <span class="firm-score firm-score-ok">3.1/5</span>
+  </summary>
+  <div class="detail-body">
+    <div class="row">
+      <div class="col pro">
+        <h4>Vorteile</h4>
+        <ul>
+          <li><strong>Frankfurt DE:</strong> Lokale Niederlassung</li>
+          <li><strong>Spezialhormone:</strong> Beste Auswahl bei 25-OH Vit D, 1,25-(OH)2 Vit D, Wachstumshormone</li>
+          <li><strong>120 Tests/h:</strong> Guter Durchsatz</li>
+        </ul>
+      </div>
+      <div class="col con">
+        <h4>Nachteile</h4>
+        <ul>
+          <li><strong>Nischen-Hersteller:</strong> Fokus auf Spezialassays, nicht auf breites Routine-Labor</li>
+          <li><strong>Teuer:</strong> 8–12k €/Mo., Gerät 40–60k €</li>
+          <li><strong>Email bounced:</strong> Korrigierte Adresse dach_customerservices@idsplc.com</li>
+          <li><strong>Eingeschränktes Menü</strong> für Routine-Immunoassays</li>
+        </ul>
+      </div>
+    </div>
+    <div class="verdict verdict-yellow">Nische: Nur sinnvoll als Ergänzungsgerät für Spezialhormone. Nicht als Hauptgerät-Ersatz für Vidas 3.</div>
+  </div>
+</details>
+
+</div>
 
 <!-- PARAMETER COVERAGE -->
 <h2>Parameter-Abdeckung (Dr. Lebedevs 30 Kern-Assays)</h2>
